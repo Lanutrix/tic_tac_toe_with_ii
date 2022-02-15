@@ -1,0 +1,28 @@
+from keras.engine.input_layer import Input
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow import keras
+from keras import Sequential
+from keras.layers import Dense, Conv2D, Flatten
+from keras.models import load_model
+import math
+
+model = keras.models.load_model('education/xo_main.h5')
+
+def ii(pole):
+    move=model.predict([pole])
+    
+    y,x=move[0]
+    print(y,x)
+    y,x=y*2,x*2
+    if x<0.5: x=0
+    elif x<0.9: x=1
+    else: x=2
+    if y<0.5: y=0
+    elif y<1: y=1
+    else: y=2
+    return (y,x)
+
+print(ii([3,2,0,3,3,2,2,0,0]))
+print(ii([2,3,2,3,3,2,0,2,0]))
+print([2, 2])

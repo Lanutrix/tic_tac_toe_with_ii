@@ -1,10 +1,17 @@
+from keras.engine.input_layer import Input
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow import keras
+from keras import Sequential
+from keras.layers import Dense, Conv2D, Flatten
+from keras.models import load_model
 import math
 from random import randint
-import sys
-from xml.dom.pulldom import parseString
-import numpy as np
 
+model = keras.models.load_model('/home/dmodv/git_project/tic_tac_toe_with_ii/education/xo_main.h5')
 
+def ii(pole):
+    move=model.predict(pole)
 EMPTY_CHAR = 0
 AI_TURN = True
 USER_TURN = False
@@ -145,9 +152,9 @@ while 1:
 
         
         elif kxto==computer_char:
-            move = get_pc(pole)
+            move = ii(pole)
             if move is not None:
-                x, y = move
+                y, x = move
                 pole[y][x] = computer_char
                 if is_win(computer_char, pole):
                     print('you lose')
